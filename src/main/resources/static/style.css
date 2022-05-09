@@ -1,0 +1,43 @@
+body {
+    color : #113;
+}
+
+.bg-orange {
+    background-color: #dad2e9;
+}
+
+.btn{
+    background-color: #dad2e9;
+}
+
+.block{
+   /* top: 50%;
+    left: 50%;*/
+    /*margin-left: auto;
+    margin-right: auto;*/
+    padding: 30px;
+    margin: 5px;
+    background-color: #dad2e9;
+    height: 950px;
+    width: 700px;
+   /* background-position: 50% 50%;*/
+    background-position-x: center;
+    border-radius: 15px;
+}
+
+.width_container{
+    width: 300px;
+}
+
+.width_container2{
+    width: 500px;
+}
+
+.width_container3{
+    width: 100px;
+}
+
+.containerw{
+
+    width: 700px;
+}
