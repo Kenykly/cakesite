@@ -64,6 +64,7 @@ public class CakeFormController {
                              @RequestParam String  fillingname
                              ) throws IOException {
 
+        //при созданнии торта находить в сущности цену (по выбранному в форме имени) и считать сумму по этим значениям
         //запрос по уникальному имени - буду искать стоимость бисквита и его id вместо создания сущности
         Biscuit biscuit = biscuitRepository.findByTastename(biscuitname).get(0);
         //biscuitRepository.save(biscuit);
