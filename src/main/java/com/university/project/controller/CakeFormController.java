@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +35,18 @@ public class CakeFormController {
 
 
     @GetMapping("/make")
-    public String showCakeForm() {
+    public String showCakeForm(Model model) {
+
+        //выводим в форму создания досупные вкусы крема, бисквита, начинок
+        Iterable<Biscuit> biscuitnames = biscuitRepository.findAll();
+        model.addAttribute("biscuitnames", biscuitnames);
+
+        Iterable<Cream> creamnames = creamRepository.findAll();
+        model.addAttribute("creamnames", creamnames);
+
+        Iterable<Filling> fillingnames = fillingRepository.findAll();
+        model.addAttribute("fillingnames", fillingnames );
+
         return "make";
     }
 
@@ -51,18 +63,18 @@ public class CakeFormController {
                              @RequestParam String creamname,
                              @RequestParam String  fillingname
                              ) throws IOException {
-        //здесь,  наверное, лучше сделать какой-то набор готовый кремов, бисквитов и начинок с установленными ценами
-        //при созданнии торта находить в сущности цену (по выбранному в форме имени) и считать сумму по этим значениям
 
         //запрос по уникальному имени - буду искать стоимость бисквита и его id вместо создания сущности
-        Biscuit biscuit = new Biscuit(biscuitname);
-        biscuitRepository.save(biscuit);
+        Biscuit biscuit = biscuitRepository.findByTastename(biscuitname).get(0);
+        //biscuitRepository.save(biscuit);
 
-        Cream cream = new Cream(creamname);
-        creamRepository.save(cream);
+        Filling filling = fillingRepository.findByTastename(fillingname).get(0);
+        //fillingRepository.save(filling);
 
-        Filling filling = new Filling(fillingname);
-        fillingRepository.save(filling);
+        Cream cream = creamRepository.findByTastename(creamname).get(0);
+        //creamRepository.save(cream);
+
+
 
         String resultFileName = "";
         if (file != null && !file.getOriginalFilename().isEmpty()){ //загружаем картинку
