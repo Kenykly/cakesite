@@ -1,15 +1,14 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-    <div class=" ms-5 ">
+    <div class=" ms-2 ">
         <p class="h2">Создай свой торт</p>
     </div>
-
 
     <div class="block">
         <form method="post" enctype="multipart/form-data">
 
-            <label class="form-check-label ms-5 mt-3" for="flexRadioDefault1">
+            <label class="form-check-label ms-5 mt-2" for="flexRadioDefault1">
                 <b> Количество ярусов</b>
             </label>
             <div class="form-check form-check-inline ms-5">
@@ -52,7 +51,7 @@
             </label>
             <div class="width_container ms-5  mt-3">
                 <select class="form-select form-select-sm " name="fillingname">
-                   <#-- <option selected>Выберите начинку</option>-->
+                    <#-- <option selected>Выберите начинку</option>-->
                     <#list  fillingnames as fillingname>
                         <option value="${fillingname.tastename}">${fillingname.tastename}</option>
                     </#list>
@@ -109,18 +108,20 @@
                 <input type="text" class="form-control" id="validationCustom03" name="cakeComment">
             </div>
 
-            <p class="ms-5 mt-3">
+            <#--<p class="ms-5 mt-3">
                 <b> Итоговая стоимость:</b>
-            </p>
+            </p>-->
 
+            <#-- <div class="d-grid gap-2 col-3 mx-auto mt-1">
+                 <button type="submit" class="btn btn-secondary">Рассчитать</button>
+             </div>-->
+            <br>
+            <br>
 
             <div class="d-grid gap-2 col-3 mx-auto mt-1">
-                <button type="submit" class="btn btn-secondary">Рассчитать</button>
+                <button type="submit" class="btn btn-secondary" id="liveAlertBtn">Добавить</button>
             </div>
 
-            <div class="d-grid gap-2 col-3 mx-auto mt-1">
-                <button type="submit" class="btn btn-secondary">Добавить</button>
-            </div>
 
         </form>
     </div>

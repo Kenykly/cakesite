@@ -12,6 +12,10 @@ select * from biscuit;
 select * from cream;
 select * from filling;
 
+delete from cream where tastename = 'Выберите начинку';
+delete from filling where tastename = 'Выберите начинку';
+
+
 select * from ordr
 
 INSERT INTO ordr(id, user_id, order_date, order_ready_date, order_sum, user_adress, pickup)

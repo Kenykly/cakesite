@@ -34,6 +34,10 @@ public class CakeFormController {
     private String uploadPath; //встаавляем это в переменную
 
 
+    double kForTwoStage = 1.7;
+    double kForThreeStage = 2.4;
+    double marginSumm = 2.5;
+
     @GetMapping("/make")
     public String showCakeForm(Model model) {
 
@@ -64,18 +68,9 @@ public class CakeFormController {
                              @RequestParam String  fillingname
                              ) throws IOException {
 
-        //при созданнии торта находить в сущности цену (по выбранному в форме имени) и считать сумму по этим значениям
-        //запрос по уникальному имени - буду искать стоимость бисквита и его id вместо создания сущности
         Biscuit biscuit = biscuitRepository.findByTastename(biscuitname).get(0);
-        //biscuitRepository.save(biscuit);
-
         Filling filling = fillingRepository.findByTastename(fillingname).get(0);
-        //fillingRepository.save(filling);
-
         Cream cream = creamRepository.findByTastename(creamname).get(0);
-        //creamRepository.save(cream);
-
-
 
         String resultFileName = "";
         if (file != null && !file.getOriginalFilename().isEmpty()){ //загружаем картинку
@@ -91,11 +86,29 @@ public class CakeFormController {
             file.transferTo(new File(uploadPath + "/" + resultFileName)); //загружаем
         }
 
-        //посчитать сумму
-        Cake cake = new Cake(stageCount, cakeform, personCount, 6555, decorDescription, resultFileName,  biscuit, cream, filling, cakeComment);
-        cakeRepository.save(cake); //сохранили сообщение
+        boolean isInBasket = true;
+        double cakePrice = countCakePrice(biscuit, cream, filling, stageCount, personCount);
+        Cake cake = new Cake(user, isInBasket, stageCount, cakeform, personCount, cakePrice, decorDescription, resultFileName,  biscuit, cream, filling, cakeComment);
+        cakeRepository.save(cake);
 
-        return "basket";
+        return "cakeismade";
+    }
+
+
+    private double countCakePrice(Biscuit biscuit, Cream cream, Filling filling, int stageCount, int personCount) {
+
+        double stageK = 1;
+        if (stageCount == 2){
+            stageK = kForTwoStage;
+        }
+        else{
+            if (stageCount == 3){
+                stageK = kForThreeStage;
+            }
+        }
+
+        double price = marginSumm * stageK * personCount * (biscuit.getPrice() + cream.getPrice() + filling.getPrice());
+        return  price;
     }
 
 }

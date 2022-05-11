@@ -18,12 +18,21 @@ body {
     padding: 30px;
     margin: 5px;
     background-color: #dad2e9;
-    height: 950px;
-    width: 700px;
+    height: 900px;
+    width: 900px;
    /* background-position: 50% 50%;*/
     background-position-x: center;
     border-radius: 15px;
 }
+
+.cakeblock{
+    padding: 30px;
+    margin: 10px;
+    background-color: #dad2e9;
+    //background-position-x: center;
+    width: 600px;
+}
+
 
 .width_container{
     width: 300px;

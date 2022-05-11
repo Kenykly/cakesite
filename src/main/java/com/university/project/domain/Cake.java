@@ -10,8 +10,10 @@ public class Cake {
     private  Integer id;
 
 
-    public Cake(int stageCount, String cakeForm, int personCount, int cakePrice, String decorDescription, String decorfilename, Biscuit biscuit, Cream cream, Filling filling, String cakeComment) {
+    public Cake(User user, boolean isInBasket, int stageCount, String cakeForm, int personCount, double cakePrice, String decorDescription, String decorfilename, Biscuit biscuit, Cream cream, Filling filling, String cakeComment) {
 
+        this.user = user;
+        this.isInBasket = isInBasket;
         this.stageCount = stageCount;
         this.cakeForm = cakeForm;
         this.personCount = personCount;
@@ -31,11 +33,34 @@ public class Cake {
     private  String cakeComment;
     private String cakeForm;
     private int personCount;
-    private int cakePrice;
+    private double cakePrice;
     private  int stageCount;
 
     private String decorDescription;
     private  String decorfilename;
+
+    private  boolean isInBasket;
+
+    //одному пользователю соотв множество созданных тортиков
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private  User user;
+
+    public boolean isInBasket() {
+        return isInBasket;
+    }
+
+    public void setInBasket(boolean inBasket) {
+        isInBasket = inBasket;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @OneToOne
     @JoinColumn(name = "biscuit_id")
@@ -90,11 +115,11 @@ public class Cake {
         this.personCount = personCount;
     }
 
-    public int getCakePrice() {
+    public double getCakePrice() {
         return cakePrice;
     }
 
-    public void setCakePrice(int cakePrice) {
+    public void setCakePrice(double cakePrice) {
         this.cakePrice = cakePrice;
     }
 
