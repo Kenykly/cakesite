@@ -11,10 +11,5 @@ public interface MessageRepository  extends CrudRepository<Message, Long>{
     //https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
     List<Message> findByTag(String tag);
 
-    //чтобы использовать свой запрос:
-
-   /* @Query(value = "SELECT nextval(pg_get_serial_sequence('t_user', 'id'))", nativeQuery = true)
-    Long getNextId();*/
-
 
 }

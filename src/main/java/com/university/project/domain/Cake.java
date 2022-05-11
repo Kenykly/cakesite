@@ -7,7 +7,7 @@ public class Cake {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private  Integer id;
+    private long id;
 
 
     public Cake(User user, boolean isInBasket, int stageCount, String cakeForm, int personCount, double cakePrice, String decorDescription, String decorfilename, Biscuit biscuit, Cream cream, Filling filling, String cakeComment) {
@@ -83,11 +83,11 @@ public class Cake {
         this.stageCount = stageCount;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

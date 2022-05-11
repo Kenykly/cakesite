@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CakeRepository extends CrudRepository<Cake, Long> {
 
-   Cake findById(int id);
+   Cake findById(long id);
 
 
    @Query("select c from Cake c where c.isInBasket = true  and c.user.id=?1")

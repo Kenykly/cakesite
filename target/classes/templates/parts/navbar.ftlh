@@ -12,9 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Главная страница</a>
                 </li>
-                <li class="nav-item">
+                <#--<li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/main">Сообщения</a>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/make">Создать торт</a>
                 </li>
@@ -32,6 +32,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/login">Авторизоваться</a>
                 </li>
+                </#if>
+                <#if name !="unknown">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/basket">Корзина</a>
+                    </li>
                 </#if>
             </ul>
             <div class="navbar-text me-3">${name}</div>

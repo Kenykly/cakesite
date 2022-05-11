@@ -1,6 +1,7 @@
 package com.university.project.domain;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private  int orderSum;
+    private  double orderSum;
 
     @ElementCollection(targetClass = OrderStatus.class, fetch  = FetchType.EAGER )
     @CollectionTable(name = "order_status", joinColumns = @JoinColumn(name = "ordr_id") )
@@ -29,15 +30,18 @@ public class Order {
     private String userAdress;
     //0-доставляем, 1 - самовывоз
     private boolean pickup;
+    String orderReadyTime;
 
-    public Order(User user, int orderSum, Set<OrderStatus> status, Date orderDate, Date orderReadyDate, String userAdress, boolean pickup) {
+    public Order(User user,  double orderSum,   Date orderReadyDate, String orderReadyTime, String userAdress, boolean pickup) {
         this.user = user;
         this.orderSum = orderSum;
-        this.status = status;
-        this.orderDate = orderDate;
-        this.orderReadyDate = orderReadyDate;
+        //this.status = OrderStatus.Ожидает_Подтверждения;
+        Calendar calendar = Calendar.getInstance();
+        this.orderDate = calendar.getTime();
+        this.orderReadyDate = orderReadyDate;  //дату заказа автоматически делать  сегодняшней, статус - создан
         this.userAdress = userAdress;
         this.pickup = pickup;
+        this.orderReadyTime = orderReadyTime;
     }
 
     public Order(User user) {
@@ -45,6 +49,14 @@ public class Order {
     }
     public Order() {
 
+    }
+
+    public String getOrderReadyTime() {
+        return orderReadyTime;
+    }
+
+    public void setOrderReadyTime(String orderReadyTime) {
+        this.orderReadyTime = orderReadyTime;
     }
 
     public Integer getId() {
@@ -63,11 +75,11 @@ public class Order {
         this.user = user;
     }
 
-    public int getOrderSum() {
+    public double getOrderSum() {
         return orderSum;
     }
 
-    public void setOrderSum(int orderSum) {
+    public void setOrderSum(double orderSum) {
         this.orderSum = orderSum;
     }
 
