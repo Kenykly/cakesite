@@ -51,7 +51,7 @@ public class CakeFormController {
         Iterable<Filling> fillingnames = fillingRepository.findAll();
         model.addAttribute("fillingnames", fillingnames );
 
-        return "make";
+        return "makeacake";
     }
 
 

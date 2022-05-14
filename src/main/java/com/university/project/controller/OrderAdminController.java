@@ -1,19 +1,11 @@
 package com.university.project.controller;
 
-import com.university.project.domain.Role;
-import com.university.project.domain.User;
 import com.university.project.repos.OrderRepository;
-import com.university.project.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/orders")
@@ -27,7 +19,7 @@ public class OrderAdminController {
     @GetMapping
     public String orderList(Model model){
         model.addAttribute("orders", orderRepository.findAll());
-        return "orders";
+        return "adminorders";
     }
 
  /*   @GetMapping("{user}") //ожидаем помимо /user через слеш id

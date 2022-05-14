@@ -9,12 +9,17 @@
         <thead>
         <tr>
             <th>id заказа</th>
-            <th>id пользователя</th>
             <th>логин пользователя</th>
-            <th>дата заказа</th>
-            <th>дата готовности заказа</th>
+            <th>дата создания заказа</th>
+            <th>дата получения заказа</th>
             <th>сумма заказа</th>
             <th>адрес пользователя</th>
+            <th>комментарий</th>
+            <th>номер телефона</th>
+            <th>статус заказа</th>
+
+            <th>адрес получения заказа</th>
+
             <th></th>
         </tr>
         </thead>
@@ -23,7 +28,6 @@
         <#list  orders as order>
             <tr>
                 <td>${order.id}</td>
-                <td>${order.user.id}</td>
                 <td>${order.user.username}</td>
                 <td>${order.orderDate}</td>
                 <td>${order.orderReadyDate}</td>

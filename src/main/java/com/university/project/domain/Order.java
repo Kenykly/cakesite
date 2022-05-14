@@ -1,8 +1,10 @@
 package com.university.project.domain;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,24 +22,36 @@ public class Order {
 
     private  double orderSum;
 
-    @ElementCollection(targetClass = OrderStatus.class, fetch  = FetchType.EAGER )
-    @CollectionTable(name = "order_status", joinColumns = @JoinColumn(name = "ordr_id") )
-    @Enumerated(EnumType.STRING)
-    private Set<OrderStatus>  status;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cake_id")
+    private List<Cake> cakes;
 
-    private Date orderDate;
-    private Date orderReadyDate;
+    @Column(name = "ordr_status")
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+
+
+    private String orderDate;
+    private String orderReadyDate;
     private String userAdress;
     //0-доставляем, 1 - самовывоз
     private boolean pickup;
     String orderReadyTime;
+    private String phone;
+    private  String orderComment;
 
-    public Order(User user,  double orderSum,   Date orderReadyDate, String orderReadyTime, String userAdress, boolean pickup) {
+
+    public Order(User user, double orderSum, String orderReadyDate, String orderReadyTime, String userAdress, boolean pickup, List<Cake> cakes, String phone, String orderComment) {
+
+        this.cakes = cakes;
         this.user = user;
+        this.orderComment = orderComment;
+        this.phone = phone;
         this.orderSum = orderSum;
-        //this.status = OrderStatus.Ожидает_Подтверждения;
-        Calendar calendar = Calendar.getInstance();
-        this.orderDate = calendar.getTime();
+        this.orderStatus = OrderStatus.Ожидает_Подтверждения;
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date(System.currentTimeMillis());
+        this.orderDate =formatter.format(date);
         this.orderReadyDate = orderReadyDate;  //дату заказа автоматически делать  сегодняшней, статус - создан
         this.userAdress = userAdress;
         this.pickup = pickup;
@@ -49,6 +63,39 @@ public class Order {
     }
     public Order() {
 
+    }
+
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public List<Cake> getCakes() {
+        return cakes;
+    }
+
+    public void setCakes(List<Cake> cakes) {
+        this.cakes = cakes;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getOrderComment() {
+        return orderComment;
+    }
+
+    public void setOrderComment(String orderComment) {
+        this.orderComment = orderComment;
     }
 
     public String getOrderReadyTime() {
@@ -83,27 +130,20 @@ public class Order {
         this.orderSum = orderSum;
     }
 
-    public Set<OrderStatus> getStatus() {
-        return status;
-    }
 
-    public void setStatus(Set<OrderStatus> status) {
-        this.status = status;
-    }
-
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
-    public Date getOrderReadyDate() {
+    public String getOrderReadyDate() {
         return orderReadyDate;
     }
 
-    public void setOrderReadyDate(Date orderReadyDate) {
+    public void setOrderReadyDate(String orderReadyDate) {
         this.orderReadyDate = orderReadyDate;
     }
 

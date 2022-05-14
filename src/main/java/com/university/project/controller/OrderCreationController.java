@@ -28,47 +28,44 @@ public class OrderCreationController {
     private CakeRepository cakeRepository;
 
     @GetMapping("/basket")
-    public String cakeList(Model model, @AuthenticationPrincipal User user){
+    public String cakeList(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("cakes", cakeRepository.findByUserIdAndisInBasket(user.getId()));
         model.addAttribute("ordersum", orderSumCount(cakeRepository.findByUserIdAndisInBasket(user.getId())));
         return "basket";
     }
 
-   /* @GetMapping("{cakeid}") //ожидаем помимо /basket через слеш id
-    public  String cakeDelete(*//*@PathVariable Cake cake,*//*   @PathVariable("cakeid") long cakeId ,Model model){
-        Cake cake = cakeRepository.findById(cakeId);
-        cakeRepository.delete(cake);
-        //model.addAttribute("cakes", cakeRepository.findByUserIdAndisInBasket(user.getId()));
-        //model.addAttribute("user", user);
-        //model.addAttribute("roles", Role.values());
-        return "basket";
-    }*/
 
     @PostMapping("/basket")
     public String createOrder(@AuthenticationPrincipal User user,
-                             @RequestParam String decorDescription,
-                             @RequestParam int personCount,
-                             @RequestParam int stageCount,
-                             @RequestParam String cakeComment,
-                             @RequestParam String cakeform,
-                             @RequestParam String biscuitname,
-                             @RequestParam String creamname,
-                             @RequestParam String  fillingname
-    ){
+                              Model model,
+                              @RequestParam String orderComment,
+                              @RequestParam String orderReadyDate,
+                              @RequestParam String orderReadyTime,
+                              @RequestParam String userAdress,
+                              @RequestParam String deliveryway,
+                              @RequestParam String phone
 
-        double orderSum = orderSumCount(cakeRepository.findByUserIdAndisInBasket(user.getId()));
-        //Order order = new Order(user,  orderSum, "Создан", Date orderReadyDate, String orderReadyTime, String userAdress, boolean pickup)
-        //boolean isInBasket = true;
-        //double orderPrice = countOrderPrice(biscuit, cream, filling, stageCount, personCount);
-        //Cake cake = new Cake(user, isInBasket, stageCount, cakeform, personCount, cakePrice, decorDescription, resultFileName,  biscuit, cream, filling, cakeComment);
-        //cakeRepository.save(cake);
+    ) {
 
+        boolean isPickup = true;
+        if (deliveryway == "delivery") {
+            isPickup = false;
+        }
+        List<Cake> cakes= cakeRepository.findByUserIdAndisInBasket(user.getId());
+        double orderSum = orderSumCount(cakes);
+        Order order = new Order(user, orderSum, orderReadyDate, orderReadyTime, userAdress, isPickup, cakes, phone, orderComment);
+        for (Cake cake : cakes)
+        {
+            cake.setInBasket(false);
+        }
+        orderRepository.save(order);
+        model.addAttribute("orders", orderRepository.findAll()); //искать по id
         return "userorders";
     }
 
     private double orderSumCount(List<Cake> cakes) {
         double orderSum = 0;
-        for(Cake c : cakes)
+        for (Cake c : cakes)
             orderSum += c.getCakePrice();
         return orderSum;
 
