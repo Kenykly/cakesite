@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/adminuserslist")
 @PreAuthorize("hasAuthority('ADMIN')")//чтобы была только админу доступна
 public class UserController {
 
@@ -25,7 +25,7 @@ public class UserController {
     @GetMapping
     public String userList(Model model){
         model.addAttribute("users", userRepository.findAll());
-        return "usersList";
+        return "adminuserslist";
     }
 
     @GetMapping("{user}") //ожидаем помимо /user через слеш id

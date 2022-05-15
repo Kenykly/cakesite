@@ -6,9 +6,11 @@ body {
     background-color: #dad2e9;
 }
 
+/*
 .btn{
     background-color: #dad2e9;
 }
+*/
 
 .block{
    /* top: 50%;
@@ -61,3 +63,68 @@ body {
     background: url(//www.gravatar.com/avatar/cbfaff96665b7567defe1b34a883db8b?s=16&d=identicon&r=PG) no-repeat center;
     background-size: contain;
 }
+
+.btn-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 19px;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 16px;
+}
+
+.navbutton {
+    width: 60px;
+    height: 60px;
+
+}
+
+.btnbig{
+    width: 80px;
+    height: 80px;
+}
+/*.navbar {}*/
+
+/*.nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 0;
+}*/
+
+/*.nav-menu__item {
+    display: flex;
+    margin: 0px 15px;
+}
+
+.nav-menu__item a {
+    text-decoration: none;
+    color: #555555;
+}*/
+
+/*.nav-menu__item .active {
+    text-decoration: none;
+    color: #5363db;
+}
+
+.nav-menu__item_center {
+    display: block;
+}*/
+/*
+
+.logo {
+    padding: 0 150px;
+    margin: 0;
+    text-align: center;
+}
+
+!*.logo__link {
+    display: inline-block;
+}*!
+
+.logo__image {
+    display: block;
+}*/
