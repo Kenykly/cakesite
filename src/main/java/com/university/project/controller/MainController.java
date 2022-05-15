@@ -27,11 +27,6 @@ public class MainController {
     @Value("${upload.path}")//указываем спрингу что хотим получить из контекста переменную
     private String uploadPath; //встаавляем это в переменную
 
-    @GetMapping("/")
-    public String greeting( Map<String, Object> model) {
-        return "greeting";
-    }
-
     @GetMapping("/main")
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
         Iterable<Message> messages = messageRepository.findAll();

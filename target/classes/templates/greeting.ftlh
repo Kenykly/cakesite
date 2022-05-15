@@ -4,7 +4,7 @@
 
 
     <div style="width: 1000%;">
-        <div style="float: left; width: 800px; height: 300px;">
+        <div style="float: left; width: 850px; height: 300px;">
             <div class="mainblocksmall">
                 <div class="row ms-3 me-3 mt-2">
                     <div class="col-md-8 <#--ms-6 ps-2-->">
