@@ -1,13 +1,11 @@
 <#include "security.ftlh">
 <#import "login.ftlh" as l>
 
-
+<#--https://www.youtube.com/watch?v=QXQOwyQLdTk&t=527s  подвал сайта-->
 <nav class="navbar navbar-expand-md navbar-light bg-orange">
     <div class="container-fluid">
 
-        <a href="/" class="navbar-brand"> <img src="../../static/logo.png" alt="logo"/></a>
-
-        <#--<a class="navbar-brand" href="/">Cake</a>-->
+        <a href="/" class="navbar-brand"> <img src="../../static/pictures/logo.png" alt="logo"/></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,9 +20,9 @@
                 </li>
 
                 <#if !isAdmin>
-                <li class="navbar-brand">
-                    <a class="nav-link active" aria-current="page" href="/make">Создать торт</a>
-                </li>
+                    <li class="navbar-brand">
+                        <a class="nav-link active" aria-current="page" href="/make">Создать торт</a>
+                    </li>
                 </#if>
 
                 <li class="navbar-brand">
@@ -32,9 +30,12 @@
                 </li>
 
                 <li class="navbar-brand">
-                    <a class="nav-link active" aria-current="page" href="/contacts">Контакты</a>
+                    <a class="nav-link active" aria-current="page" href="/aboutus">О нас</a>
                 </li>
 
+                <li class="navbar-brand">
+                    <a class="nav-link active" aria-current="page" href="https://forms.yandex.ru/cloud/6281264fa7858a61e1c98fe6/">Свяжитесь с нами</a>
+                </li>
 
                 <#if isAdmin>
                     <li class="navbar-brand">
@@ -53,24 +54,31 @@
 
 
             <ul class="navbar-nav me-6">
+                <button class="btn btn-outline-secondary btnbig mr-3 me-2">
+                    <a href="/basket"></a> <i class="bi bi-telegram"></i>
+                </button>
+
+                <#if !isAdmin>
                 <form action="/login" method="get">
                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                     <button class="btn btn-outline-secondary btnbig mr-3 me-2" type="submit"/>
                     <i class="bi bi-person"></i>
                     </button>
                 </form>
+                </#if>
 
-                <#--<#if name !="unknown">-->
+                <#if !isAdmin>
                 <form action="/basket" method="get">
                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                     <button class="btn btn-outline-secondary btnbig mr-3 me-2" type="submit"/>
                     <i class="bi bi-cart"></i>
                     </button>
                 </form>
-                <#-- </#if>-->
+                </#if>
+
+
             </ul>
 
-            <#--<div class="navbar-text me-3">${name}</div>-->
             <#if name !="unknown"><@l.logout/></#if>
         </div>
 

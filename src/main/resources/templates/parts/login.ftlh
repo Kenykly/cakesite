@@ -20,10 +20,20 @@
 
         <#if isRegisterForm>
             <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Фамилия:</label>
+                <br>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="surname" placeholder="фамилия"/>
+                </div>
+            </div>
+        </#if>
+
+        <#if isRegisterForm>
+            <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Адрес элктронной почты:</label>
                 <br>
                 <div class="col-sm-6">
-                    <input type="email" class="form-control" name="name" placeholder="name@example.com"/>
+                    <input type="email" class="form-control" name="email" placeholder="name@example.com"/>
                 </div>
             </div>
         </#if>

@@ -3,6 +3,7 @@
 
 <@c.page>
 
+    ${message?ifExists}
     <p class="h2">Авторизация</p>
     <@l.login "/login" false/>
 

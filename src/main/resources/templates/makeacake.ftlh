@@ -2,7 +2,7 @@
 
 <@c.page>
     <div class=" ms-2 ">
-        <p class="h2">Создай свой торт</p>
+        <p class="h2">Создайте свой торт</p>
     </div>
 
     <div class="block">
