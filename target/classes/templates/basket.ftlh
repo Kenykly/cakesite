@@ -37,9 +37,16 @@
                                     <br>
                                     <#if cake.decorDescription !=""><strong>Описание
                                         декора: </strong>${cake.decorDescription}<br></#if>
-                                    <#if cake.decorfilename !=""><strong>Фото торта: </strong>${cake.decorfilename}
-                                        <br></#if>
+                                    <#--<#if cake.decorfilename !=""><strong>Фото торта: </strong>${cake.decorfilename}
+                                        <br></#if>-->
                                     <#if cake.cakeComment !=""><strong>Комментарий: </strong>${cake.cakeComment}</#if>
+
+                                    <br>
+                                    <#if cake.decorfilename !=""><strong>Фото торта: <#--</strong>${cake.decorfilename}
+                                <br>--></#if>
+                                        <#if cake.decorfilename!="">
+                                            <img width="200" src="/img/${cake.decorfilename}">
+                                        </#if>
 
                                 </blockquote>
                             </div>
@@ -51,19 +58,6 @@
                         <p class="text-right">
                             <strong>Стоимость: ${cake.cakePrice} руб.</strong>
                         </p>
-                        <#--<form action="/basket/${cake.id}" method="get">
-
-                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-
-                            <button class="btn btn-outline-secondary btnbig mr-3 me-2" type="submit"/>
-                            <i class="bi bi-cart"></i>
-                            </button>
-
-                           &lt;#&ndash; <input type="hidden" value="${_csrf.token}" name = "_csrf">&ndash;&gt;
-
-
-                        </form>-->
-
                         <a class=" ms-8 " href="/basket/${cake.id}">удалить</a>
                         <#--<i class="bi bi-trash3"></i>-->
                     </div>
@@ -152,7 +146,7 @@
             <br>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-secondary btn-lg" <#--id="liveAlertBtn"-->>Оформить заказ</button>
+                <button type="submit" class="btn btn-secondary btn-lg">Оформить заказ</button>
             </div>
         </form>
     <#--<#else>

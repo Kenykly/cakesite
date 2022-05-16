@@ -34,7 +34,9 @@ public class RegistrationController {
         /*user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));//сет с одним значением
         userRepository.save(user);*/
-        return  "redirect:/login";
+
+        //return  "redirect:/login";
+        return "confirmemail";
     }
 
     @GetMapping("/activate/{code}")
@@ -48,5 +50,6 @@ public class RegistrationController {
             model.addAttribute("message", "Код активации не найден");
         }
         return  "login";
+
     }
 }

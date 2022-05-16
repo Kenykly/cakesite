@@ -43,10 +43,9 @@
                 <td>${order.orderComment?ifExists}</td>
                 <td>${order.phone}</td>
                 <td>${order.orderStatus}</td>
+                <td> <a class=" ms-8 " href="/adminorders/${order.id}"><#--изменить--><i class="bi bi-gear-fill"></i></a></td>
 
-                <td><button class="btn btn-outline-secondary mr-1 me-1" type="submit"/>
-                    <i class="bi bi-gear-fill"></i>
-                    </button> <#--<input type="hidden" name="_csrf" value="${_csrf.token}"/>--></td>
+
             </tr>
         </#list>
         </tbody>

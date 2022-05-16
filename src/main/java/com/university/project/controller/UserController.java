@@ -53,6 +53,7 @@ public class UserController {
             }
         }
         userRepository.save(user);
+        //return "confirmemail";
         return "redirect:/adminuserslist";
     }
 

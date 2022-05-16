@@ -83,8 +83,9 @@ public class OrderCreationController {
             cake.setInBasket(false);
         }
         orderRepository.save(order);
-        model.addAttribute("orders", orderRepository.findAll()); //искать по id
-        return "userorders";
+        model.addAttribute("orders", orderRepository.findById((int)user.getId())); //искать по id
+        //return "userorders";
+        return  "redirect:/userorders";
     }
 
     private double orderSumCount(List<Cake> cakes) {
