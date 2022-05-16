@@ -38,8 +38,6 @@
     </div>
 
 
-
-<#--<img src="/static/pictures/mainblock.png">-->
     <br><br><br><br> <br></br></br></br> </br></br></br></br>
 
     <br>

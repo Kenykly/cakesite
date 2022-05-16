@@ -17,7 +17,7 @@ public class UserOrdersController {
 
     @GetMapping("/userorders")
     public String cakeList(Model model, @AuthenticationPrincipal User user) {
-        model.addAttribute("orders", orderRepository.findById(user.getId()));
+        model.addAttribute("orders", orderRepository.findByUserId(user.getId()));
         return "userorders";
     }
 }

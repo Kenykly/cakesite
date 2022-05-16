@@ -7,6 +7,8 @@
         <thead>
         <tr>
         <th>Логин</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
         <th>Роль</th>
         <th></th>
         </tr>
@@ -16,8 +18,10 @@
         <#list  users as user>
             <tr>
                 <td>${user.username}</td>
+                <td>${user.name?ifExists}</td>
+                <td>${user.surname?ifExists}</td>
                 <td><#list user.roles as role>${role}<#sep>, </#list></td>
-                <td><a href="/user/${user.id}">редактировать</a> </td>
+                <td><a href="/adminuserslist/${user.id}">редактировать роль</a> </td>
             </tr>
         </#list>
         </tbody>

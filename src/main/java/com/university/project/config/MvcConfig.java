@@ -23,7 +23,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/templates/img/**") //каждое обращение к серверу будет перенапрвлять все запросы по пути:
+        registry.addResourceHandler("/img/**") //каждое обращение к серверу будет перенапрвлять все запросы по пути:
         //.addResourceLocations("file//" + uploadPath + "/");
         .addResourceLocations( "file:///" + uploadPath + "/" );
         registry.addResourceHandler("/static/**")

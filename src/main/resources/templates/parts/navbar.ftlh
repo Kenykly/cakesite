@@ -34,7 +34,7 @@
                 </li>
 
                 <li class="navbar-brand">
-                    <a class="nav-link active" aria-current="page" href="https://forms.yandex.ru/cloud/6281264fa7858a61e1c98fe6/">Свяжитесь с нами</a>
+                    <a class="nav-link active" aria-current="page" target="_blank" href="https://forms.yandex.ru/cloud/6281264fa7858a61e1c98fe6/">Свяжитесь с нами</a>
                 </li>
 
                 <#if isAdmin>
@@ -46,6 +46,12 @@
                 <#if isAdmin>
                     <li class="navbar-brand">
                         <a class="nav-link active" aria-current="page" href="/adminorders">Заказы</a>
+                    </li>
+                </#if>
+
+                <#if !isAdmin>
+                    <li class="navbar-brand">
+                        <a class="nav-link active" aria-current="page" href="/userorders">Заказы</a>
                     </li>
                 </#if>
 

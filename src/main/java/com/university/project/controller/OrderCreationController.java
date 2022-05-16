@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @Controller
 public class OrderCreationController {
-    //basket
+
 
     @Autowired
     private OrderRepository orderRepository;
@@ -31,6 +31,30 @@ public class OrderCreationController {
     public String cakeList(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("cakes", cakeRepository.findByUserIdAndisInBasket(user.getId()));
         model.addAttribute("ordersum", orderSumCount(cakeRepository.findByUserIdAndisInBasket(user.getId())));
+        return "basket";
+    }
+
+
+    @GetMapping("basket/{cake}") //ожидаем помимо /user через слеш id
+    public  String cakeDelete(@PathVariable Cake cake, Model model,  @AuthenticationPrincipal User user){
+        cakeRepository.delete(cake);
+        List<Cake> cakes = cakeRepository.findByUserIdAndisInBasket(user.getId());
+        model.addAttribute("cakes", cakes);
+        model.addAttribute("ordersum", orderSumCount(cakes));
+        /* model.addAttribute("ссфлу", user);
+
+
+        model.addAttribute("roles", Role.values());*/
+        return "basket";
+    }
+
+    @PostMapping("basket/{cake}") //ожидаем помимо /user через слеш id
+    public  String cakeDelete2(@PathVariable Cake cake, Model model,  @AuthenticationPrincipal User user){
+        cakeRepository.delete(cake);
+        List<Cake> cakes = cakeRepository.findByUserIdAndisInBasket(user.getId());
+        model.addAttribute("ordersum", orderSumCount(cakes));
+       /* model.addAttribute("ссфлу", user);
+        model.addAttribute("roles", Role.values());*/
         return "basket";
     }
 

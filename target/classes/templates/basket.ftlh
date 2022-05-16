@@ -51,7 +51,21 @@
                         <p class="text-right">
                             <strong>Стоимость: ${cake.cakePrice} руб.</strong>
                         </p>
-                        <a class=" ms-8 " href="${cake.id}">удалить</a>
+                        <#--<form action="/basket/${cake.id}" method="get">
+
+                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+
+                            <button class="btn btn-outline-secondary btnbig mr-3 me-2" type="submit"/>
+                            <i class="bi bi-cart"></i>
+                            </button>
+
+                           &lt;#&ndash; <input type="hidden" value="${_csrf.token}" name = "_csrf">&ndash;&gt;
+
+
+                        </form>-->
+
+                        <a class=" ms-8 " href="/basket/${cake.id}">удалить</a>
+                        <#--<i class="bi bi-trash3"></i>-->
                     </div>
 
 
@@ -119,6 +133,8 @@
                            pattern="8[0-9]{3}[0-9]{3}[0-9]{4}"
                            required>
                 </div>
+
+                <input type="hidden" value="${_csrf.token}" name = "_csrf">
 
                 <div class="mt-2">
                     <label for="validationCustom03" class="form-label"><b>Комментарий к заказу</b></label>

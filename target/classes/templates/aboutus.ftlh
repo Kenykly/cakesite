@@ -1,12 +1,10 @@
 <#import "parts/common.ftlh" as c>
 
 <@c.page>
-
-
     <div style="float: left; width: 1600px; height: 1200px;">
         <div class="usblock">
             <div class="row ms-3 me-3 mt-2">
-                <div class="col-md-8 <#--ms-6 ps-2-->">
+                <div class="col-md-8 ">
                     <div class="thumbnail">
                         <h1>
                             <div style="float: left; width: 700px">
@@ -23,22 +21,19 @@
                                     Le Cordon Bleu. Елизавета уже более 12 лет создает уникальные десерты и торты,
                                     которые отличаются
                                     безупречны вкусом и
-                                    эстетикой.</small><#--<img src="/static/pictures/aboutus.png">-->
+                                    эстетикой.</small>
                             </div>
 
                         </h1>
                     </div>
                 </div>
                 <div class="col-md-4 mt-2" class="usblock2">
-                    <#--<div class="thumbnail">-->
                     <img src="/static/pictures/aboutus.png">
-                    <#--</div>
-                    <button>/</button>-->
                 </div>
                 <br><br>
                 <h1>
                     <small class="text-muted">Наш главный приоритет — безупречное качество продуктов, чистота вкуса,
-                        идеальное исполнение и четкое соблюдение сроков.<br>
+                        идеальное исполнение и четкое соблюдение сроков.<br><br>
                         У нас вы всегда можете заказать оформить заказ на праздничные торты любой сложности и с любым
                         дизайном.
                         Просто поделитесь своей идеей, а мы воплотим ее в реальность.<br><br>
@@ -48,8 +43,6 @@
                 </h1>
             </div>
             <br>
-            </br>
-
         </div>
     </div>
 

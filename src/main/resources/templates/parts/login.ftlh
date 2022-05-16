@@ -13,7 +13,7 @@
                 <label for="exampleFormControlInput1" class="form-label">Имя:</label>
                 <br>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="name" placeholder="имя"/>
+                    <input type="text" class="form-control" name="name" placeholder="имя" required/>
                 </div>
             </div>
         </#if>
@@ -33,7 +33,7 @@
                 <label for="exampleFormControlInput1" class="form-label">Адрес элктронной почты:</label>
                 <br>
                 <div class="col-sm-6">
-                    <input type="email" class="form-control" name="email" placeholder="name@example.com"/>
+                    <input type="email" class="form-control" name="email" placeholder="name@example.com" required/>
                 </div>
             </div>
         </#if>
@@ -43,7 +43,7 @@
             <label for="exampleFormControlInput1" class="form-label">Логин:</label>
             <br>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="username" placeholder="логин"/>
+                <input type="text" class="form-control" name="username" placeholder="логин" required/>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
             <label for="inputPassword" class="col-sm-2 col-form-label"> Пароль:</label>
             <br>
             <div class="col-sm-6">
-                <input type="password" class="form-control" name="password" placeholder="пароль"/>
+                <input type="password" class="form-control" name="password" placeholder="пароль" required/>
             </div>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>

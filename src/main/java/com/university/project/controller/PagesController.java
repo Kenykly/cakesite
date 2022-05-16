@@ -9,7 +9,7 @@ import java.util.Map;
 public class PagesController {
 
     @GetMapping("/")
-    public String getMainPage( Map<String, Object> model) {
+    public String getGrPage( Map<String, Object> model) {
         return "greeting";
     }
 

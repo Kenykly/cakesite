@@ -3,7 +3,7 @@
 <@c.page>
     <div xmlns="http://www.w3.org/1999/html">Edit user</div>
 
-    <form action="/user" method="post">
+    <form action="/adminuserslist" method="post">
 
         <input type="text" name = "username" value="${user.username}">
         <#list  roles as role>
