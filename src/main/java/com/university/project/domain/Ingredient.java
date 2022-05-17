@@ -6,7 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Filling {
+public class Ingredient {
+
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -14,19 +15,18 @@ public class Filling {
 
     private String tastename;
 
+    private String ingtype;
+
     private int price;
 
-    public Filling(String tastename, int price) {
+    public Ingredient(String tastename, String type, int price) {
         this.tastename = tastename;
+        this.ingtype = type;
         this.price = price;
     }
 
-    public Filling(String tastename) {
-        this.tastename = tastename;
+    public Ingredient() {
 
-    }
-
-    public Filling() {
     }
 
     public Integer getId() {
@@ -43,6 +43,14 @@ public class Filling {
 
     public void setTastename(String tastename) {
         this.tastename = tastename;
+    }
+
+    public String getType() {
+        return ingtype;
+    }
+
+    public void setType(String type) {
+        this.ingtype = type;
     }
 
     public int getPrice() {

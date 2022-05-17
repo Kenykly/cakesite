@@ -29,11 +29,11 @@
                                     <br>
                                     <strong>Торт рассчитан на </strong>${cake.personCount} <strong>человек</strong>
                                     <br>
-                                    <strong>Бисквит: </strong>${cake.biscuit.tastename}
+                                    <strong>Бисквит: </strong>${cake.biscuitName}
                                     <br>
-                                    <strong>Крем: </strong>${cake.cream.tastename}
+                                    <strong>Крем: </strong>${cake.creamName}
                                     <br>
-                                    <strong>Начинка: </strong>${cake.filling.tastename}
+                                    <strong>Начинка: </strong>${cake.fillingName}
                                     <br>
                                     <#if cake.decorDescription !=""><strong>Описание
                                         декора: </strong>${cake.decorDescription}<br></#if>

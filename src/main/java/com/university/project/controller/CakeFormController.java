@@ -13,22 +13,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
 public class CakeFormController {
 
     @Autowired
+    private  IngredientRepository ingredientRepository;
+
+
+    @Autowired
     private CakeRepository cakeRepository;
-
-    @Autowired
-    private CreamRepository creamRepository;
-
-    @Autowired
-    private BiscuitRepository biscuitRepository;
-
-    @Autowired
-    private FillingRepository fillingRepository;
+    
 
     @Value("${upload.path}")//указываем спрингу что хотим получить из контекста переменную
     private String uploadPath; //встаавляем это в переменную
@@ -42,13 +41,16 @@ public class CakeFormController {
     public String showCakeForm(Model model) {
 
         //выводим в форму создания досупные вкусы крема, бисквита, начинок
-        Iterable<Biscuit> biscuitnames = biscuitRepository.findAll();
+       // Iterable<Biscuit> biscuitnames = biscuitRepository.findAll();
+        Iterable<Ingredient> biscuitnames = ingredientRepository.findByIngtype("Бисквит");
         model.addAttribute("biscuitnames", biscuitnames);
 
-        Iterable<Cream> creamnames = creamRepository.findAll();
+        Iterable<Ingredient> creamnames = ingredientRepository.findByIngtype("Крем");
+        //Iterable<Cream> creamnames = creamRepository.findAll();
         model.addAttribute("creamnames", creamnames);
 
-        Iterable<Filling> fillingnames = fillingRepository.findAll();
+        //Iterable<Filling> fillingnames = fillingRepository.findAll();
+        Iterable<Ingredient> fillingnames = ingredientRepository.findByIngtype("Начинка");
         model.addAttribute("fillingnames", fillingnames );
 
         return "makeacake";
@@ -68,9 +70,17 @@ public class CakeFormController {
                              @RequestParam String  fillingname
                              ) throws IOException {
 
-        Biscuit biscuit = biscuitRepository.findByTastename(biscuitname).get(0);
-        Filling filling = fillingRepository.findByTastename(fillingname).get(0);
-        Cream cream = creamRepository.findByTastename(creamname).get(0);
+
+        Ingredient biscuit = ingredientRepository.findByTastenameAndIngtype(biscuitname, "Бисквит").get(0);
+        //Biscuit biscuit = biscuitRepository.findByTastename(biscuitname).get(0);
+
+
+        //Filling filling = fillingRepository.findByTastename(fillingname).get(0);
+        Ingredient filling = ingredientRepository.findByTastenameAndIngtype(fillingname, "Начинка").get(0);
+
+
+        //Cream cream = creamRepository.findByTastename(creamname).get(0);
+        Ingredient cream = ingredientRepository.findByTastenameAndIngtype(creamname, "Крем").get(0);
 
         String resultFileName = "";
         if (file != null && !file.getOriginalFilename().isEmpty()){ //загружаем картинку
@@ -88,14 +98,23 @@ public class CakeFormController {
 
         boolean isInBasket = true;
         double cakePrice = countCakePrice(biscuit, cream, filling, stageCount, personCount);
-        Cake cake = new Cake(user, isInBasket, stageCount, cakeform, personCount, cakePrice, decorDescription, resultFileName,  biscuit, cream, filling, cakeComment);
+        List<Ingredient> ingredients = new ArrayList<Ingredient>();
+
+        ingredients.add(filling);
+        ingredients.add(biscuit);
+        ingredients.add(cream);
+        //List<Ingredient> ingredients;
+        //ingredients = {filling, biscuit, cream};
+
+       // List<Ingredient> ingredients = new {filling, biscuit};
+        Cake cake = new Cake(user, isInBasket, stageCount, cakeform, personCount, cakePrice, decorDescription, resultFileName, ingredients,  /*biscuit, cream, filling,*/ cakeComment);
         cakeRepository.save(cake);
 
         return "cakeismade";
     }
 
 
-    private double countCakePrice(Biscuit biscuit, Cream cream, Filling filling, int stageCount, int personCount) {
+    private double countCakePrice(Ingredient biscuit, Ingredient cream, Ingredient filling, int stageCount, int personCount) {
 
         double stageK = 1;
         if (stageCount == 2){

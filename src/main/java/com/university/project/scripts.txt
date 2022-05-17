@@ -15,6 +15,15 @@ select * from filling;
 delete from cream where tastename = 'Выберите начинку';
 delete from filling where tastename = 'Выберите начинку';
 
+select * from ingredient
+select * from cream
+
+delete from ingredient
+INSERT INTO ingredient(id, tastename, type, price) values( 12, 'Шоколадный', 'Бискивит', 1);
+
+select * from ingredient
+select * from cream
+
 
 select * from ordr
 
@@ -65,3 +74,26 @@ INSERT INTO filling(id, tastename, price)
 			values(5, 'Черная смородина', 45);
 INSERT INTO filling(id, tastename, price)
 			values(6, 'Малина', 45);
+
+
+
+delete from ingredient
+INSERT INTO ingredient(id, ingtype, price, tastename) values(1, 'Бисквит',  12, 'Шоколадный');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(2, 'Бисквит',  10, 'Ванильный');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(3, 'Бисквит',  18, 'Пряная вишня');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(4, 'Бисквит',  14, 'Шифоновый');
+
+INSERT INTO ingredient(id, ingtype, price, tastename) values(5, 'Крем',  40, 'Шоколадный');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(6, 'Крем',  50, 'Ягодный');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(7, 'Крем',  45, 'Крем чиз');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(8, 'Крем',  45, 'Сметанный');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(9, 'Крем',  35, 'Пломбир');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(10, 'Крем',  42, 'Кофейный');
+
+
+INSERT INTO ingredient(id, ingtype, price, tastename) values(11, 'Начинка',  40, 'Соленая карамель');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(12, 'Начинка',  50, 'Вишня');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(13, 'Начинка',  45, 'Шоколад');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(14, 'Начинка',  43, 'Шоколад+арахис');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(15, 'Начинка',  56, 'Черная смородина');
+INSERT INTO ingredient(id, ingtype, price, tastename) values(16, 'Начинка',  56, 'Малина');

@@ -2,6 +2,7 @@ package com.university.project.controller;
 
 import com.university.project.domain.*;
 import com.university.project.repos.CakeRepository;
+import com.university.project.repos.IngredientRepository;
 import com.university.project.repos.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,10 +28,16 @@ public class OrderCreationController {
     @Autowired
     private CakeRepository cakeRepository;
 
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
     @GetMapping("/basket")
     public String cakeList(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("cakes", cakeRepository.findByUserIdAndisInBasket(user.getId()));
+        //model.addAttribute("biscuit", cakeRepository.findByUserIdAndisInBasket(user.getId()));
         model.addAttribute("ordersum", orderSumCount(cakeRepository.findByUserIdAndisInBasket(user.getId())));
+
+
         return "basket";
     }
 
@@ -40,6 +47,18 @@ public class OrderCreationController {
         cakeRepository.delete(cake);
         List<Cake> cakes = cakeRepository.findByUserIdAndisInBasket(user.getId());
         model.addAttribute("cakes", cakes);
+
+      /*  Iterable<Ingredient> biscuitnames = ingredientRepository.findByIngtype("Бисквит");
+        model.addAttribute("biscuitnames", biscuitnames);
+
+        Iterable<Ingredient> creamnames = ingredientRepository.findByIngtype("Крем");
+        //Iterable<Cream> creamnames = creamRepository.findAll();
+        model.addAttribute("creamnames", creamnames);
+
+        //Iterable<Filling> fillingnames = fillingRepository.findAll();
+        Iterable<Ingredient> fillingnames = ingredientRepository.findByIngtype("Начинка");
+        model.addAttribute("fillingnames", fillingnames );*/
+
         model.addAttribute("ordersum", orderSumCount(cakes));
         /* model.addAttribute("ссфлу", user);
 
@@ -53,8 +72,6 @@ public class OrderCreationController {
         cakeRepository.delete(cake);
         List<Cake> cakes = cakeRepository.findByUserIdAndisInBasket(user.getId());
         model.addAttribute("ordersum", orderSumCount(cakes));
-       /* model.addAttribute("ссфлу", user);
-        model.addAttribute("roles", Role.values());*/
         return "basket";
     }
 
